@@ -1,0 +1,63 @@
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.contact-widget-section2 {
+  padding-right: 30px;
+}
+
+.contact-info li{
+  /* list-style: none;
+  padding: 0;
+  margin: 0; */
+
+}
+
+/* .contact-info li {
+  margin-bottom: 150px ;
+} */
+
+.contact-info i {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.contact-form .form-control {
+  border-radius: 0;
+}
+
+.contact-form textarea.form-control {
+  resize: vertical;
+}
+
+.form-submit button {
+  padding: 12px 30px;
+}
+
+#msgSubmit {
+  display: none;
+  margin-top: 20px;
+}
+
+#msgSubmit p {
+  margin-bottom: 0;
+}
+
+#msgSubmit .text-success {
+  color: #28a745;
+}
+
+#msgSubmit .text-danger {
+  color: #dc3545;
+}
