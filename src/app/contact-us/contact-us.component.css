@@ -8,16 +8,14 @@
   padding-right: 30px;
 }
 
-.contact-info li{
-  /* list-style: none;
-  padding: 0;
-  margin: 0; */
-
+.support-form {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 25px;
+  background-color: white;
 }
-
-/* .contact-info li {
-  margin-bottom: 150px ;
-} */
 
 .contact-info i {
   margin-right: 10px;
@@ -45,7 +43,7 @@
   padding: 12px 30px;
 }
 
-#msgSubmit {
+/* #msgSubmit {
   display: none;
   margin-top: 20px;
 }
@@ -60,4 +58,4 @@
 
 #msgSubmit .text-danger {
   color: #dc3545;
-}
+} */

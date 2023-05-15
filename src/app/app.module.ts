@@ -7,6 +7,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaimentOnlineComponent } from './paiment-online/paiment-online.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     ProductListComponent,
     NavbarComponent,
     CartComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PaimentOnlineComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

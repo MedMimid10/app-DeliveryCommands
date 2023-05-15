@@ -1,0 +1,27 @@
+
+.cart-section{
+}
+
+
+
+@media(max-width:992px) {
+  .quantity-product{
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .quantity-product input {
+    width: 70%;
+  }
+
+}
+
+@media (max-width:780px) {
+  .price-element{
+    width: 50%;
+  }
+  .trash-element{
+    width: 50%;
+  }
+
+}
