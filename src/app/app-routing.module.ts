@@ -19,6 +19,7 @@ const routes: Routes = [
     path: 'paiment-online',
     component: PaimentOnlineComponent
  },
+
  {
     path:'cart',
     component: CartComponent
