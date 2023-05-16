@@ -13,6 +13,7 @@ import { PaimentOnlineComponent } from './paiment-online/paiment-online.componen
 
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
+import { NotificationDropdownComponent } from './notification-dropdown/notification-dropdown.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
     ContactUsComponent,
     PaimentOnlineComponent,
     TraficOrdersComponent,
-    ShipmentPageComponent
+    ShipmentPageComponent,
+    NotificationDropdownComponent
   ],
   imports: [
     BrowserModule,
