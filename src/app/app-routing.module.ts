@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ContactUsComponent
  },
  {
-    path: 'paiment-online',
+    path: 'paiement-online',
     component: PaimentOnlineComponent
  },
 
@@ -25,7 +25,7 @@ const routes: Routes = [
     component: CartComponent
  },
  {
-  path:'shipment-page',
+  path:'shippement-page',
   component: ShipmentPageComponent
 },
 {

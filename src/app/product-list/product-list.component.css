@@ -1,3 +1,16 @@
 .search-label {
   width: 350px !important;
 }
+
+@media (max-width:768px) {
+
+  .product-filter{
+    gap: 10px;
+
+  }
+  .search-label{
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+  }
+
+}
