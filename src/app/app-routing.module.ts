@@ -8,6 +8,9 @@ import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 const routes: Routes = [
   {
+    path:'',pathMatch:'full',redirectTo:'product-list'
+  },
+  {
     path: 'product-list',
     component: ProductListComponent
  },
