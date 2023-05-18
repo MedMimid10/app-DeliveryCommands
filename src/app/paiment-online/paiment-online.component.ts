@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -7,7 +8,10 @@ declare var $: any;
   styleUrls: ['./paiment-online.component.css']
 })
 export class PaimentOnlineComponent {
+  constructor(private router:Router){}
+
   activeTab: string = 'credit-card';
+
 
   onSelectTab(tab: string) {
     this.activeTab = tab;
@@ -16,5 +20,8 @@ export class PaimentOnlineComponent {
   onSubmit() {
     // Handle the form submission
     // ...
+  }
+  cancelPayment(){
+    this.router.navigate(['/shippement-page'])
   }
 }

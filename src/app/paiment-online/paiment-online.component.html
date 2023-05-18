@@ -11,12 +11,12 @@
           <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
             <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
               <li class=" nav-item">
-                <a data-toggle="pill" routerLink="paiment-online" class="nav-link" [ngClass]="{ active: activeTab === 'credit-card' }"(click)="onSelectTab('credit-card')">
+                <a data-toggle="pill" routerLink="paiement-online" class="nav-link" [ngClass]="{ active: activeTab === 'credit-card' }"(click)="onSelectTab('credit-card')">
                   <i class="fas fa-credit-card mr-2"></i> Credit Card
                 </a>
               </li>
               <li class="nav-item">
-                <a data-toggle="pill" routerLink="paiment-online" class="nav-link" [ngClass]="{ active: activeTab === 'paypal' }" (click)="onSelectTab('paypal')">
+                <a data-toggle="pill" routerLink="paiement-online" class="nav-link" [ngClass]="{ active: activeTab === 'paypal' }" (click)="onSelectTab('paypal')">
                   <i class="fab fa-paypal mr-2"></i> Paypal
                 </a>
               </li>
@@ -64,7 +64,8 @@
                     </div>
                   </div>
                   <div class="card-footer elemet-position">
-                    <button type="submit" class=" btn btn-primary shadow-sm col-10" >Confirm Payment</button>
+                    <button type="submit" class=" btn btn-outline-secondary shadow-sm me-2 col-4" (click)="cancelPayment()">Annuler</button>
+                    <button type="submit" class=" btn btn-primary shadow-sm col-4" >Confirm Payment</button>
                   </div>
               </form>
             </div>
