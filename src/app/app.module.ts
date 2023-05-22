@@ -13,6 +13,8 @@ import { PaimentOnlineComponent } from './paiment-online/paiment-online.componen
 
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
