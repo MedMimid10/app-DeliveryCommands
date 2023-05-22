@@ -14,6 +14,7 @@ import { PaimentOnlineComponent } from './paiment-online/paiment-online.componen
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

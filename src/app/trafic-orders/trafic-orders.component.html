@@ -4,8 +4,8 @@
         <div class="d-flex justify-content-center align-items-center mt-5 ">
           <div class="col-md-8">
             <div class="search d-flex flex-row">
-              <input type="text" class="form-control mx-3 " placeholder="Enter your Order ID">
-              <button class="btn btn-primary">Search</button>
+              <input type="text" class="form-control mx-3 " [(ngModel)]="code" placeholder="Enter your Order ID">
+              <button (click)="getShipment()" class="btn btn-primary">Search</button>
             </div>
           </div>
         </div>
