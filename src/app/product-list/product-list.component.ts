@@ -1,19 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data-service/data.service';
 import { Product } from '../data-interfaces/Product';
 import { Category } from '../data-interfaces/Category';
+import { CartService } from '../service/cart-service/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
   products:Product[]=[];
   categories:Category[]=[];
 
-  constructor(private dataService:DataService){}
+  constructor(private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    this.snackBar.open('Product added to the cart!', 'Close', {
+      duration: 2000, // Duration in milliseconds
+    });
+  }
+
 
   ngOnInit(){
     this.dataService.getProducts().subscribe(products=>{
