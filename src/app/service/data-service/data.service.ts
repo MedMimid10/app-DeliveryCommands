@@ -13,7 +13,7 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
-  private hostUrl='http://localhost:8081';
+  private hostUrl='http://localhost:8080';
   private productsUrl=`${this.hostUrl}/api/products`;
   private categoriesUrl=`${this.hostUrl}/api/categories`;
   private shipmentTypesUrl=`${this.hostUrl}/api/shipment-types`;
