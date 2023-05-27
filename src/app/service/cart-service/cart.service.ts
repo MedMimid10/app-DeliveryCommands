@@ -25,11 +25,13 @@ export class CartService {
     return this.items;
   }
   calculateTotalPrice(): number {
-    let totalPrice = 0;
+    let totalPrice = 0; 
     for (const item of this.items) {
-      totalPrice += item.price;
+      totalPrice += item.price * item.quantity;
     }
     return totalPrice;
   }
+
+
 
 }
