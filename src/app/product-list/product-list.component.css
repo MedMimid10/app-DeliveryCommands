@@ -1,3 +1,19 @@
 .search-label {
   width: 350px !important;
 }
+.mat-snack-bar-container {
+  background-color: #333;
+  color: #fff;
+}  
+@media (max-width:768px) {
+
+  .product-filter{
+    gap: 10px;
+
+  }
+  .search-label{
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+  }
+
+}

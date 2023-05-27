@@ -4,14 +4,14 @@
         <div class="d-flex justify-content-center align-items-center mt-5 ">
           <div class="col-md-8">
             <div class="search d-flex flex-row">
-              <input type="text" class="form-control mx-3" placeholder="Enter your Order ID">
-              <button class="btn btn-primary">Search</button>
+              <input type="text" class="form-control mx-3 " [(ngModel)]="code" placeholder="Enter your Order ID">
+              <button (click)="getShipment()" class="btn btn-primary">Search</button>
             </div>
           </div>
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card mt-4 bg-white">
         <div class="row d-flex justify-content-between px-3 top m-0">
             <div class="d-flex">
                 <h5>ORDER <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
@@ -28,7 +28,7 @@
                 <li class="active step0"></li>
                 <li class="active step0"></li>
                 <li class="active step0"></li>
-                <li class="step0"></li>
+                <li class="active step0"></li>
             </ul>
             <div class="d-flex justify-content-around ">
               <div class="  icon-content">

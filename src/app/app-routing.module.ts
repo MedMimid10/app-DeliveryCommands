@@ -8,6 +8,9 @@ import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 const routes: Routes = [
   {
+    path:'',pathMatch:'full',redirectTo:'product-list'
+  },
+  {
     path: 'product-list',
     component: ProductListComponent
  },
@@ -16,7 +19,7 @@ const routes: Routes = [
     component: ContactUsComponent
  },
  {
-    path: 'paiment-online',
+    path: 'paiement-online',
     component: PaimentOnlineComponent
  },
 
@@ -25,7 +28,7 @@ const routes: Routes = [
     component: CartComponent
  },
  {
-  path:'shipment-page',
+  path:'shippement-page',
   component: ShipmentPageComponent
 },
 {

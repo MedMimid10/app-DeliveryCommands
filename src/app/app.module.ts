@@ -13,7 +13,15 @@ import { PaimentOnlineComponent } from './paiment-online/paiment-online.componen
 
 import { TraficOrdersComponent } from './trafic-orders/trafic-orders.component';
 import { ShipmentPageComponent } from './shipment-page/shipment-page.component';
-import { NotificationDropdownComponent } from './notification-dropdown/notification-dropdown.component';
+
+
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -25,13 +33,17 @@ import { NotificationDropdownComponent } from './notification-dropdown/notificat
     ContactUsComponent,
     PaimentOnlineComponent,
     TraficOrdersComponent,
-    ShipmentPageComponent,
-    NotificationDropdownComponent
+    ShipmentPageComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
