@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../service/cart-service/cart.service';
-
+import { Product } from '../data-interfaces/Product';
 
 @Component({
   selector: 'app-cart',
@@ -10,25 +10,37 @@ import { CartService } from '../service/cart-service/cart.service';
 })
 export class CartComponent {
   totalPrice: number = 0;
+  items: Product[] = [];
 
-  items = this.cartService.getItems();
+  constructor(public router: Router, private cartService: CartService) {}
 
-
-  constructor(public router:Router,private cartService:CartService){}
   ngOnInit() {
+    this.items = this.cartService.getItems(); // Assign the items from the cart service
     this.calculateTotalPrice();
   }
 
   removeItem(index: number) {
     this.cartService.removeItem(index);
-}
-
-  confirmPayment(){
-    this.router.navigate(['/shippement-page'])
+    this.calculateTotalPrice();
   }
+
+  confirmPayment() {
+    this.router.navigate(['/shippement-page']);
+  }
+
   calculateTotalPrice(): void {
     this.totalPrice = this.cartService.calculateTotalPrice();
   }
 
-
+  increaseQuantity(item: Product) {
+    item.quantity++;
+    this.calculateTotalPrice();
+  }
+  
+  decreaseQuantity(item: Product) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.calculateTotalPrice();
+    }
+  }
 }

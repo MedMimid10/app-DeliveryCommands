@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     this.snackBar.open('Product added to the cart!', 'Close', {
-      duration: 2000, // Duration in milliseconds
+      duration: 500, // Duration in milliseconds
     });
   }
 
