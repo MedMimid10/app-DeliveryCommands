@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../service/data-service/data.service';
 import { Product } from '../data-interfaces/Product';
 import { Category } from '../data-interfaces/Category';
+import { CartService } from '../service/cart-service/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,20 +10,47 @@ import { Category } from '../data-interfaces/Category';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-
+  searchTerm: string = "";
   products:Product[]=[];
   categories:Category[]=[];
+  filteredProducts: Product[] = [];
+  selectedCategory: string = "Categories";
+
 
   constructor(private dataService:DataService){}
 
-  ngOnInit(){
+  ngOnInit():void{
     this.dataService.getProducts().subscribe(products=>{
       console.log(products)
       this.products=products;
+      this.filteredProducts=products
     })
     this.dataService.getCategories().subscribe(categories=>{
       console.log(categories)
       this.categories=categories;
     })
-  } 
+
+  }
+  filterProducts(): void {
+
+    this.filteredProducts = this.products;
+
+    // Filter by search term
+    if (this.searchTerm.trim() !== "") {
+      this.filteredProducts = this.filteredProducts.filter(product =>
+        product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+
+    // Filter by category
+    if (this.selectedCategory && this.selectedCategory !== "Categories") {
+      this.filteredProducts = this.filteredProducts.filter(product =>
+        product.category.code === this.selectedCategory
+      );
+    }
+  }
+
+
+
+
 }
