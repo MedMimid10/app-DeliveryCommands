@@ -13,7 +13,12 @@ export class CartService {
 }
 
   addToCart(product: Product) {
-    this.items.push(product);
+    const productToAdd: Product = { ...product, quantity: 1 };
+  this.items.push(productToAdd);
+  }
+
+  isProductInCart(product: Product): boolean {
+    return this.items.some(item => item.code === product.code);
   }
 
   getItems() {
@@ -25,7 +30,7 @@ export class CartService {
     return this.items;
   }
   calculateTotalPrice(): number {
-    let totalPrice = 0; 
+    let totalPrice = 0;
     for (const item of this.items) {
       totalPrice += item.price * item.quantity;
     }

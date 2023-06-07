@@ -36,7 +36,7 @@ export class CartComponent {
     item.quantity++;
     this.calculateTotalPrice();
   }
-  
+
   decreaseQuantity(item: Product) {
     if (item.quantity > 1) {
       item.quantity--;
