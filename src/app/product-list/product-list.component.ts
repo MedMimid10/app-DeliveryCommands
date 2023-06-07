@@ -16,7 +16,6 @@ export class ProductListComponent {
   filteredProducts: Product[] = [];
   selectedCategory: string = "Categories";
 
-
   constructor(private dataService:DataService){}
 
   ngOnInit():void{
