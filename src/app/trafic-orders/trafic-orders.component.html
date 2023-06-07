@@ -11,24 +11,24 @@
         </div>
     </div>
 
-    <div class="card mt-4 bg-white">
+    <div class="card mt-4 bg-white" *ngIf="shipment.code && shipment.fname">
         <div class="row d-flex justify-content-between px-3 top m-0">
             <div class="d-flex">
-                <h5>ORDER <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                <h5>ORDER <span class="text-primary font-weight-bold">{{shipment.code}}</span></h5>
             </div>
             <div class="d-flex flex-column text-sm-right">
                 <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
-                <p>USPS <span class="font-weight-bold">234094567242423422898</span></p>
+                <!-- <p>USPS <span class="font-weight-bold">234094567242423422898</span></p> -->
             </div>
         </div>
         <!-- Add class 'active' to progress -->
         <div class=" d-flex flex-column justify-content-center m-0 ">
             <div class="col-12">
             <ul id="progressbar" class="text-center">
-                <li class="active step0"></li>
-                <li class="active step0"></li>
-                <li class=" step0"></li>
-                <li class=" step0"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order processed' || 'order shipped' || 'order on the way' || 'order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order shipped' || 'order on the way' || 'order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order on the way' || 'order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order arrived'}"></li>
             </ul>
             <div class="d-flex justify-content-around ">
               <div class="  icon-content">
