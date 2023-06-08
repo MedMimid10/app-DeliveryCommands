@@ -14,7 +14,7 @@ export class CartService {
 
   addToCart(product: Product) {
     const productToAdd: Product = { ...product, quantity: 1 };
-  this.items.push(productToAdd);
+    this.items.push(productToAdd);
   }
 
   isProductInCart(product: Product): boolean {

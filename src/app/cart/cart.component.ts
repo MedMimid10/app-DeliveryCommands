@@ -9,10 +9,11 @@ import { Product } from '../data-interfaces/Product';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  totalPrice: number = 0;
+  totalPrice :number = 0;
   items: Product[] = [];
 
   constructor(public router: Router, private cartService: CartService) {}
+  
 
   ngOnInit() {
     this.items = this.cartService.getItems(); // Assign the items from the cart service
@@ -25,7 +26,8 @@ export class CartComponent {
   }
 
   confirmPayment() {
-    this.router.navigate(['/shippement-page']);
+    this.router.navigate(['/shippement-page'],{state:{totalPrice:this.totalPrice}})
+    
   }
 
   calculateTotalPrice(): void {
