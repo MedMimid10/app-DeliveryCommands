@@ -18,11 +18,19 @@ export class ProductListComponent implements OnInit {
 
   constructor(private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
-    this.snackBar.open('Product added to the cart!', 'Close', {
-      duration: 500, // Duration in milliseconds
-    });
+    // Check if the product is already in the cart
+    if (!this.cartService.isProductInCart(product)) {
+      this.cartService.addToCart(product);
+      this.snackBar.open('Product added to the cart!', 'Close', {
+        duration: 1000, // Duration in milliseconds
+      });
+    } else {
+      this.snackBar.open('Product is already in the cart!', 'Close', {
+        duration: 1000, // Duration in milliseconds
+      });
+    }
   }
+
 
 
   ngOnInit(){
@@ -34,5 +42,5 @@ export class ProductListComponent implements OnInit {
       console.log(categories)
       this.categories=categories;
     })
-  } 
+  }
 }
