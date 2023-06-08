@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../service/data-service/data.service';
+import { Shipment } from '../data-interfaces/Shipment';
 
 @Component({
   selector: 'app-trafic-orders',
@@ -8,17 +9,24 @@ import { DataService } from '../service/data-service/data.service';
 })
 export class TraficOrdersComponent {
   code:string="";
-
+  shipment:Shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+  
   constructor(private dataService:DataService){}
-  ngOnInit(){
-    this.dataService.getShipment("001").subscribe(shipment=>{
-      console.log(shipment)
-    })
-  }
+  
+  
   getShipment(){
     console.log(this.code)
-    this.dataService.getShipment(this.code).subscribe(shipment=>{
-      console.log(shipment)
-    })
+    if(this.code.length !== 0){
+      this.dataService.getShipment(this.code).subscribe(shipment=>{
+        if(shipment !== null){
+          this.shipment=shipment;
+          console.log(shipment)
+        }else{
+          this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+        }
+      })
+    }else{
+      this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+    }
   }
 }

@@ -18,7 +18,7 @@ export class DataService {
   private categoriesUrl=`${this.hostUrl}/api/categories`;
   private shipmentTypesUrl=`${this.hostUrl}/api/shipment-types`;
   private shipmentUrl=`${this.hostUrl}/api/shipments`;
-  
+
   httpOptions = {
     headers: new HttpHeaders({'Content-Type':'application/json'})
   }
