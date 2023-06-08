@@ -37,12 +37,12 @@ export class ProductListComponent {
 
   ngOnInit():void{
     this.dataService.getProducts().subscribe(products=>{
-      console.log(products)
+      // console.log(products)
       this.products=products;
       this.filteredProducts=products
     })
     this.dataService.getCategories().subscribe(categories=>{
-      console.log(categories)
+      // console.log(categories)
       this.categories=categories;
     })
 

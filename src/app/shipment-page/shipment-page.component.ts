@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShipmentType } from '../data-interfaces/ShipmentType';
 import { DataService } from '../service/data-service/data.service';
 import { CartComponent } from '../cart/cart.component';
+import { Product } from '../data-interfaces/Product';
 
 
 
@@ -18,6 +19,9 @@ export class ShipmentPageComponent {
   totalPrice:number=0;
   ShippementCost:number=14;
   total: number = 0;
+  products:Product[]=[];
+
+  firstname:string="";
 
   shipmentTypes:ShipmentType[]=[];
 
@@ -30,15 +34,42 @@ export class ShipmentPageComponent {
   
   ngOnInit(){
     this.dataService.getShipmentTypes().subscribe(shipmentTypes=>{
-      console.log(shipmentTypes);
+      // console.log(shipmentTypes);
       this.shipmentTypes=shipmentTypes;
     })
-    this.totalPrice=history.state.totalPrice;
-    this.calculateTotalPrice(); 
+    if(!history.state.totalPrice || !history.state.products){
+      this.router.navigate(['/']);
+    }else{
+      this.totalPrice=history.state.totalPrice;
+      this.products=history.state.products;
+
+      this.products.forEach(product => {
+        this.dataService.bodyToSend.products.push({id:product.id,quantity:product.quantity});
+      });
+
+      this.calculateTotalPrice(); 
+    }
 
   }
 
+  submitShipment(){
+    // console.log(this.firstname);
+    if(this.firstname.length===0){
+      console.log("fill all form fields");
+    }else{
+      this.dataService.bodyToSend.fname=this.firstname;
+      console.log(this.dataService.bodyToSend);
+      
+      this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response=>{
+        console.log(response);
+      });
+
+      this.router.navigate(['/paiement-online']);
+    }
+  }
+
   backtoCart(){
+    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",status:"",shipmentType:0,products:[],paiement:{}};
     this.router.navigate(['/cart'])
   }
 }

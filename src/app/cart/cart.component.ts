@@ -26,7 +26,8 @@ export class CartComponent {
   }
 
   confirmPayment() {
-    this.router.navigate(['/shippement-page'],{state:{totalPrice:this.totalPrice}})
+    console.log(this.items)
+    this.router.navigate(['/shippement-page'],{state:{totalPrice:this.totalPrice,products:this.items}})
     
   }
 

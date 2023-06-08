@@ -5,15 +5,50 @@ import { Product } from 'src/app/data-interfaces/Product';
 import { Category } from 'src/app/data-interfaces/Category';
 import { ShipmentType } from 'src/app/data-interfaces/ShipmentType';
 import { Shipment } from 'src/app/data-interfaces/Shipment';
+import { ProductDto } from 'src/app/data-interfaces/ProductDto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  bodyToSend:{code:string,fname:string,lname:string,tel:string,address:string,city:string,postalCode:string,zip:string,status:string,shipmentType:number,products:ProductDto[],paiement:{}}={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",status:"",shipmentType:0,products:[],paiement:{}};
+  // {
+  //   "code": "SHIP001",
+  //   "fname": "John",
+  //   "lname": "Doe",
+  //   "tel": "123456789",
+  //   "address": "123 Main Street",
+  //   "city": "Cityville",
+  //   "postalCode": "12345",
+  //   "zip": "67890",
+  //   "status": "Pending",
+  //   "shipmentType": 1,
+  //   "products": [
+  //     {
+  //       "id": 1,
+  //       "quantity": 3
+  //     },
+  //     {
+  //       "id": 2,
+  //       "quantity": 2
+  //     },
+  //     {
+  //       "id": 3,
+  //       "quantity": 1
+  //     }
+  //   ],
+  //   "paiement": {
+  //     "code": "PAY001",
+  //     "productsTotal": 100.0,
+  //     "discountValue": 10.0,
+  //     "shipmentPrice": 5.0
+  //   }
+  // }
+
   constructor(private http:HttpClient) { }
 
-  private hostUrl='http://localhost:8080';
+  private hostUrl='http://localhost:8090';
   private productsUrl=`${this.hostUrl}/api/products`;
   private categoriesUrl=`${this.hostUrl}/api/categories`;
   private shipmentTypesUrl=`${this.hostUrl}/api/shipment-types`;
@@ -34,5 +69,8 @@ export class DataService {
   }
   getShipment(code:string):Observable<Shipment>{
     return this.http.get<Shipment>(this.shipmentUrl+`/${code}`);
+  }
+  createShipment(bodyToSend:any){
+    return this.http.post(this.shipmentUrl+`/add`,bodyToSend,this.httpOptions);
   }
 }
