@@ -34,6 +34,7 @@ export class ShipmentPageComponent {
   email:string="";
 
   shipmentTypes:ShipmentType[]=[];
+  shipmentSelectedCode:string="S-001";
 
 
   constructor(private router:Router,private dataService:DataService,private route:ActivatedRoute){}
@@ -61,6 +62,7 @@ export class ShipmentPageComponent {
     this.total=this.totalPrice+this.ShippementCost;
  }
 
+
  submitShipment() {
   if (this.firstname.length === 0 ||
       this.lastname.length === 0 ||
@@ -68,7 +70,7 @@ export class ShipmentPageComponent {
       this.address.length === 0 ||
       this.city.length === 0 ||
       this.postalCode.length === 0 ||
-      this.status.length === 0 ||
+
       this.zip.length === 0) {
     console.log("Please fill in all form fields");
   } else {
@@ -87,14 +89,22 @@ export class ShipmentPageComponent {
       productsTotal: this.total
     };
 
+
     console.log(this.dataService.bodyToSend);
     this.router.navigate(['/paiement-online']);
   }
 }
 
 
+  selectShipment(code:any){
+    this.shipmentSelectedCode=code;
+    console.log("selected shipment code :",this.shipmentSelectedCode);
+  }
+
   backtoCart(){
-    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",status:"",shipmentType:"",products:[],paiement:{}};
-    this.router.navigate(['/cart'])
+
+  this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+
+  this.router.navigate(['/cart'])
   }
 }

@@ -9,7 +9,7 @@ import { Shipment } from '../data-interfaces/Shipment';
 })
 export class TraficOrdersComponent {
   code:string="";
-  shipment:Shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+  shipment:Shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
   
   constructor(private dataService:DataService){}
   
@@ -22,11 +22,11 @@ export class TraficOrdersComponent {
           this.shipment=shipment;
           console.log(shipment)
         }else{
-          this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+          this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
         }
       })
     }else{
-      this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
+      this.shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
     }
   }
 }
