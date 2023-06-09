@@ -73,4 +73,8 @@ export class DataService {
   createShipment(bodyToSend:any){
     return this.http.post(this.shipmentUrl+`/add`,bodyToSend,this.httpOptions);
   }
+  getShipmentCostByCode(code: string): Observable<number> {
+    const url = `${this.hostUrl}/api/shipments/${code}`; 
+    return this.http.get<number>(url);
+  }
 }
