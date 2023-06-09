@@ -30,7 +30,7 @@
           <p class="card-text">{{product.category.name}}</p>
         <!--  <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p> -->
           <div class="card-footer mt-auto text-center">
-            <a href="#!" class="btn btn-primary shadow-0 me-1 btn-sm">Add to cart</a>
+            <button type="button" (click)="addToCart(product) " class="btn btn-primary shadow-0 me-1 btn-sm">Add to cart</button>
           </div>
         </div>
       </div>
@@ -84,5 +84,6 @@
 <!-- list of products -->
 
 </div>
+
 
 

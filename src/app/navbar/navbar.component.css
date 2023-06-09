@@ -1,4 +1,12 @@
 
+.notification-dropdown {
+  display: none;
+}
+
+.notification-dropdown[hidden] {
+  display: block;
+}
+
 .website-name{
   font-size: 30px !important;
   font-weight: bolder ! important;
