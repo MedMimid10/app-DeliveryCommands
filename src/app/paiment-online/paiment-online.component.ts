@@ -12,6 +12,7 @@ export class PaimentOnlineComponent implements OnInit {
   paymentForm!: FormGroup;
   activeTab: string = 'credit-card';
   cardType: string = '';
+  pendingPayment=false;
 
   constructor(
     private router: Router,
@@ -41,13 +42,17 @@ export class PaimentOnlineComponent implements OnInit {
   submitPayment() {
     if (this.paymentForm.valid) {
       // Handle the form submission
+      this.pendingPayment=true;
       this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response => {
         console.log(response);
+        this.pendingPayment=false;
+
       });
       this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
     } else {
       // Display validation errors
       this.validateAllFormFields(this.paymentForm);
+      this.pendingPayment=false;
     }
   }
 

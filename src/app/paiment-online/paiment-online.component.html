@@ -88,7 +88,7 @@
                   </div>
                   <div class="card-footer elemet-position">
                     <button type="button" class="btn btn-outline-secondary shadow-sm me-2 col-4" (click)="cancelPayment()">Cancel</button>
-                    <button type="submit" class="btn btn-primary shadow-sm col-4" [disabled]="paymentForm.invalid">Confirm Payment</button>
+                    <button type="submit" class="btn btn-primary shadow-sm col-4" [disabled]="paymentForm.invalid || pendingPayment">Confirm Payment</button>
                   </div>
                 </form>
               </div>
