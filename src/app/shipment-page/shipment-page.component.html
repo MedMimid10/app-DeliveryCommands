@@ -19,42 +19,51 @@
                 <div class="col-6">
                   <p class="mb-0">Last name</p>
                   <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
+                  <input type="text" id="typeText" [(ngModel)]="lastname"  placeholder="Type here" class="form-control" />
                   </div>
+              </div>
+
+              <div class="col-6 mb-3">
+                <p class="mb-0">Phone</p>
+                <div class="form-outline">
+                  <input type="tel" id="typePhone" [(ngModel)]="telephone" class="form-control" pattern="^0\d{9}$" required />
                 </div>
-  
-                <!-- Phone input -->
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Phone</p>
-                  <div class="form-outline">
-                    <input type="tel" id="typePhone" value="+212" class="form-control" />
-                  </div>
-                </div>
-  
-                <!-- Email input -->
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Email</p>
-                  <div class="form-outline">
-                    <input type="email" id="typeEmail" placeholder="example@gmail.com" class="form-control" />
-                  </div>
+                <div *ngIf="!phoneRegex.test(telephone) && telephone">
+                  Format de numéro de téléphone n'est pas valide
                 </div>
               </div>
-  
-              <hr class="my-4" />
-  
-              <h5 class="card-title mb-3">Shipping info</h5>
-  
-              <div class="row mb-3">
-                <div *ngFor="let shipmentType of shipmentTypes" class="col-lg-4 mb-3">
-                  <div class="form-check h-100 border rounded-3">
-                    <div class="p-3">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadio{{shipmentType.code}}" (change)="selectShipment(shipmentType.code)" [checked]="shipmentType.name === 'express delivery'" />
-                      <label class="form-check-label" for="flexRadio{{shipmentType.code}}">
-                        {{shipmentType.name | titlecase}} <br />
-                        <small class="text-muted">{{shipmentType.description}} </small>
-                      </label>
-                    </div>
-                  </div>
+
+              <div class="col-6 mb-3">
+                <p class="mb-0">Email</p>
+                <div class="form-outline">
+                  <input type="email" id="typeEmail" [(ngModel)]="email" class="form-control" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" required />
+                </div>
+                <div *ngIf="!emailRegex.test(email) && email">
+                  E-mail est erroné
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <label class="form-check-label" for="flexCheckDefault">Keep me up to date on news</label>
+            </div> -->
+
+            <hr class="my-4" />
+
+            <h5 class="card-title mb-3">Shipping info</h5>
+
+            <div class="row mb-3">
+            <div *ngFor="let shipmentType of shipmentTypes" class="col-lg-4 mb-3">
+                <div class="form-check h-100 border rounded-3">
+
+                <div class="p-3">
+                    <!-- [checked]="shipmentType.name === 'express delivery'" -->
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadio{{shipmentType.code}}" (change)="selectShipment(shipmentType.code)" [checked]="shipmentType.name === 'express delivery'" />
+                    <label class="form-check-label" for="flexRadio{{shipmentType.code}}">
+                    {{shipmentType.name | titlecase}} <br />
+                    <small class="text-muted">{{shipmentType.description}} </small>
+                    </label>
                 </div>
               </div>
   
@@ -63,58 +72,74 @@
                 <div class="col-sm-8 mb-3">
                   <p class="mb-0">Address</p>
                   <div class="form-outline">
-                    <input type="text" id="typeText" placeholder="Type here" class="form-control" />
+                  <input type="text" id="typeText" [(ngModel)]="address" placeholder="Type here" class="form-control" />
                   </div>
-                </div>
-  
-                <!-- City select -->
-                <div class="col-sm-4 mb-3">
-                    <p class="mb-0">City</p>
-                    <select class="form-select">
-                      <option value="1">Rabat</option>
-                      <option value="2">Casablanca</option>
-                      <option value="3">Marrakech</option>
-                      <option value="4">Fes</option>
-                      <option value="5">Tangier</option>
-                      <option value="6">Agadir</option>
-                      <option value="7">Meknes</option>
-                      <option value="8">Essaouira</option>
-                      <option value="9">Chefchaouen</option>
-                      <option value="10">Ouarzazate</option>
-                    </select>
-                  </div>
-                  
-  
-                <!-- House input -->
-                <div class="col-sm-4 mb-3">
+              </div>
+
+              <div class="col-sm-4 mb-3">
+                  <p class="mb-0">City</p>
+                  <select class="form-select" [(ngModel)]="city">
+                  <option value="Marrakech">Marrakech</option>
+                  <option value="Casablanca">Casablanca</option>
+                  <option value="Rabat">Rabat</option>
+                  </select>
+              </div>
+
+              <div class="col-sm-4 mb-3">
                   <p class="mb-0">House</p>
                   <div class="form-outline">
                     <input type="text" id="typeText" placeholder="Type here" class="form-control" />
                   </div>
-                </div>
-  
-                <!-- Postal code input -->
-                <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Postal code</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" class="form-control" />
-                  </div>
-                </div>
-  
-                <!-- Zip input -->
-                <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Zip</p>
-                  <div class="form-outline">
-                    <input type="text" id="typeText" class="form-control" />
-                  </div>
-                </div>
               </div>
-  
-              <div class="float-end">
-                <button class="btn btn-light border" (click)="backtoCart()">Cancel</button>
-                <button class="btn btn-primary shadow-0 border mx-2" (click)="submitShipment()">Continue</button>
-              </div>
+
+              <div class="col-sm-4 col-6 mb-3">
+                <p class="mb-0">Postal code</p>
+                <div class="form-outline">
+                <input type="text" id="typeText" [(ngModel)]="postalCode" class="form-control" pattern="^\d{5}$" required/>
+                </div>
+                <div *ngIf="!postalCodeRegex.test(postalCode) && postalCode">
+                  Postal code est erroné
+                </div>
             </div>
+
+            <div class="col-sm-4 col-6 mb-3">
+                <p class="mb-0">Zip</p>
+                <div class="form-outline">
+                <input type="text" id="typeText" [(ngModel)]="zip" class="form-control" pattern="^\d{5}$" required/>
+                </div>
+                <div *ngIf="!zipRegex.test(zip) && zip">
+                  Zip est erroné
+                </div>
+            </div>
+            </div>
+
+            <div class="float-end">
+              <button class="btn btn-light border" (click)="backtoCart()">Cancel</button>
+              <button class="btn btn-primary shadow-0 border mx-2" (click)="submitShipment()">Continue</button>
+            </div>
+        </div>
+        </div>
+        <!-- Checkout -->
+      </div>
+      <div class="col-xl-4 col-lg-4 d-flex justify-content-center ">
+          <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px;">
+              <h6 class="text-center mb-3">Summary</h6>
+              <div class="d-flex justify-content-between">
+                  <p class="mb-2">products price:</p>
+                  <p class="mb-2">${{totalPrice}}</p>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                  <p class="mb-2">Shipping cost:</p>
+                  <p class="mb-2">${{shipmentCost}}</p>
+              </div>
+              <hr />
+              <div class="d-flex justify-content-between">
+                  <p class="mb-2">Total price:</p>
+                  <p class="mb-2 fw-bold">${{total}}</p>
+              </div>
+
+              <hr />
           </div>
           <!-- Checkout -->
         </div>

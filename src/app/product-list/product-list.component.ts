@@ -19,8 +19,7 @@ export class ProductListComponent {
   filteredProducts: Product[] = [];
   selectedCategory: string = "Categories";
 
-
-  constructor(private fb: FormBuilder,private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
+  constructor(private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
   addToCart(product: Product) {
     // Check if the product is already in the cart
     if (!this.cartService.isProductInCart(product)) {
@@ -67,7 +66,5 @@ export class ProductListComponent {
       );
     }
   }
-
-
 
 }

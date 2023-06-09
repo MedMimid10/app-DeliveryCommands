@@ -37,12 +37,14 @@ export class PaimentOnlineComponent implements OnInit {
     this.activeTab = tab;
   }
 
+
   submitPayment() {
     if (this.paymentForm.valid) {
       // Handle the form submission
       this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response => {
         console.log(response);
       });
+      this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
     } else {
       // Display validation errors
       this.validateAllFormFields(this.paymentForm);
