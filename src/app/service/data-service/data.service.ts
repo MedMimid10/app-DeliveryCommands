@@ -50,7 +50,7 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
-  private hostUrl='http://localhost:8090';
+  private hostUrl='https://livraison.onrender.com';
   private productsUrl=`${this.hostUrl}/api/products`;
   private categoriesUrl=`${this.hostUrl}/api/categories`;
   private shipmentTypesUrl=`${this.hostUrl}/api/shipment-types`;
@@ -76,7 +76,7 @@ export class DataService {
     return this.http.post(this.shipmentUrl+`/add`,bodyToSend,this.httpOptions);
   }
   getShipmentCostByCode(code: string): Observable<number> {
-    const url = `${this.hostUrl}/api/shipments/${code}`; 
+    const url = `${this.hostUrl}/api/shipments/${code}`;
     return this.http.get<number>(url);
   }
 }
