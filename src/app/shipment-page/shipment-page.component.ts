@@ -70,7 +70,6 @@ export class ShipmentPageComponent {
       this.address.length === 0 ||
       this.city.length === 0 ||
       this.postalCode.length === 0 ||
-
       this.zip.length === 0) {
     console.log("Please fill in all form fields");
   } else {
