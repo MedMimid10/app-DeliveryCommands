@@ -15,7 +15,7 @@ import { Product } from '../data-interfaces/Product';
 })
 
 export class ShipmentPageComponent {
-  
+
   totalPrice:number=0;
   ShippementCost:number=14;
   total: number = 0;
@@ -27,12 +27,12 @@ export class ShipmentPageComponent {
   shipmentSelectedCode:string="S-001";
 
   calculateTotalPrice(): void {
-     this.total=this.totalPrice+this.ShippementCost; 
+     this.total=this.totalPrice+this.ShippementCost;
   }
-  
+
 
   constructor(private router:Router,private dataService:DataService,private route:ActivatedRoute){}
-  
+
   ngOnInit(){
     this.dataService.getShipmentTypes().subscribe(shipmentTypes=>{
       // console.log(shipmentTypes);
@@ -48,7 +48,7 @@ export class ShipmentPageComponent {
         this.dataService.bodyToSend.products.push({id:product.id,quantity:product.quantity});
       });
 
-      this.calculateTotalPrice(); 
+      this.calculateTotalPrice();
     }
 
   }
@@ -60,8 +60,8 @@ export class ShipmentPageComponent {
     }else{
       this.dataService.bodyToSend.fname=this.firstname;
       console.log(this.dataService.bodyToSend);
-      
-      
+
+
 
       this.router.navigate(['/paiement-online']);
     }

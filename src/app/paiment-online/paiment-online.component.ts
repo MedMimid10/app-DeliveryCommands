@@ -18,6 +18,7 @@ export class PaimentOnlineComponent {
     this.activeTab = tab;
   }
 
+
   submitPayment() {
     // Handle the form submission
     // ...
@@ -25,6 +26,7 @@ export class PaimentOnlineComponent {
     this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response=>{
       console.log(response);
     });
+
 
   }
   cancelPayment(){
