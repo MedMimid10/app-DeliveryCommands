@@ -22,17 +22,23 @@
               </div>
 
               <div class="col-6 mb-3">
-                  <p class="mb-0">Phone</p>
-                  <div class="form-outline">
-                  <input type="tel" id="typePhone" value="+212" [(ngModel)]="telephone"  class="form-control" />
-                  </div>
+                <p class="mb-0">Phone</p>
+                <div class="form-outline">
+                  <input type="tel" id="typePhone" [(ngModel)]="telephone" class="form-control" pattern="^0\d{9}$" required />
+                </div>
+                <div *ngIf="!phoneRegex.test(telephone) && telephone">
+                  Format de numéro de téléphone n'est pas valide
+                </div>
               </div>
 
               <div class="col-6 mb-3">
-                  <p class="mb-0">Email</p>
-                  <div class="form-outline">
-                  <input type="email" id="typeEmail" [(ngModel)]="email" placeholder="example@gmail.com" class="form-control" />
-                  </div>
+                <p class="mb-0">Email</p>
+                <div class="form-outline">
+                  <input type="email" id="typeEmail" [(ngModel)]="email" class="form-control" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" required />
+                </div>
+                <div *ngIf="!emailRegex.test(email) && email">
+                  E-mail est erroné
+                </div>
               </div>
             </div>
 
@@ -72,9 +78,9 @@
               <div class="col-sm-4 mb-3">
                   <p class="mb-0">City</p>
                   <select class="form-select" [(ngModel)]="city">
-                  <option value="1">Marrakech</option>
-                  <option value="2">Casablanca</option>
-                  <option value="3">Rabat</option>
+                  <option value="Marrakech">Marrakech</option>
+                  <option value="Casablanca">Casablanca</option>
+                  <option value="Rabat">Rabat</option>
                   </select>
               </div>
 
@@ -86,18 +92,24 @@
               </div>
 
               <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Postal code</p>
-                  <div class="form-outline">
-                  <input type="text" id="typeText" [(ngModel)]="postalCode" class="form-control" />
-                  </div>
-              </div>
+                <p class="mb-0">Postal code</p>
+                <div class="form-outline">
+                <input type="text" id="typeText" [(ngModel)]="postalCode" class="form-control" pattern="^\d{5}$" required/>
+                </div>
+                <div *ngIf="!postalCodeRegex.test(postalCode) && postalCode">
+                  Postal code est erroné
+                </div>
+            </div>
 
-              <div class="col-sm-4 col-6 mb-3">
-                  <p class="mb-0">Zip</p>
-                  <div class="form-outline">
-                  <input type="text" id="typeText" [(ngModel)]="zip" class="form-control" />
-                  </div>
-              </div>
+            <div class="col-sm-4 col-6 mb-3">
+                <p class="mb-0">Zip</p>
+                <div class="form-outline">
+                <input type="text" id="typeText" [(ngModel)]="zip" class="form-control" pattern="^\d{5}$" required/>
+                </div>
+                <div *ngIf="!zipRegex.test(zip) && zip">
+                  Zip est erroné
+                </div>
+            </div>
             </div>
 
             <div class="float-end">
@@ -112,13 +124,13 @@
           <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px;">
               <h6 class="text-center mb-3">Summary</h6>
               <div class="d-flex justify-content-between">
-                  <p class="mb-2">Total price:</p>
+                  <p class="mb-2">products price:</p>
                   <p class="mb-2">${{totalPrice}}</p>
               </div>
 
               <div class="d-flex justify-content-between">
                   <p class="mb-2">Shipping cost:</p>
-                  <p class="mb-2">${{ShippementCost}}</p>
+                  <p class="mb-2">${{shipmentCost}}</p>
               </div>
               <hr />
               <div class="d-flex justify-content-between">

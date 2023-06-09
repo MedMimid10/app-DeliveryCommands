@@ -1,11 +1,13 @@
 import { Location } from '@angular/common';
-import { Component ,Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ShipmentType } from '../data-interfaces/ShipmentType';
-import { DataService } from '../service/data-service/data.service';
+import { ToastrService } from 'ngx-toastr';
 import { CartComponent } from '../cart/cart.component';
 import { Product } from '../data-interfaces/Product';
+import { ShipmentType } from '../data-interfaces/ShipmentType';
 import { PaiementDto } from '../data-interfaces/paiemetDto';
+import { DataService } from '../service/data-service/data.service';
 
 
 
@@ -18,7 +20,7 @@ import { PaiementDto } from '../data-interfaces/paiemetDto';
 export class ShipmentPageComponent {
 
   totalPrice:number=0;
-  ShippementCost:number=14;
+  shipmentCost:number=14;
   total: number = 0;
   products:Product[]=[];
 
@@ -35,9 +37,18 @@ export class ShipmentPageComponent {
 
   shipmentTypes:ShipmentType[]=[];
   shipmentSelectedCode:string="S-001";
+  shipmentSelectedId=0
+
+  phoneRegex = /^0\d{9}$/;
+  emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  postalCodeRegex =/^\d{5}$/;
+  zipRegex = /^\d{5}$/;
+
+  registerBody = { tel: '', email: '', postalCode: '', zip: '' };
 
 
-  constructor(private router:Router,private dataService:DataService,private route:ActivatedRoute){}
+
+  constructor(private router:Router,private dataService:DataService,private route:ActivatedRoute,private toastr: ToastrService){}
 
   ngOnInit(){
     this.dataService.getShipmentTypes().subscribe(shipmentTypes=>{
@@ -57,12 +68,30 @@ export class ShipmentPageComponent {
       this.calculateTotalPrice();
     }
 
+
   }
   calculateTotalPrice(): void {
-    this.total=this.totalPrice+this.ShippementCost;
+    this.total=this.totalPrice+this.shipmentCost;
  }
 
-
+ validateForm() {
+  if (!this.phoneRegex.test(this.registerBody.tel)) {
+    this.toastr.error("Format de numéro de téléphone n'est pas valide");
+    return;
+  }
+  if (!this.emailRegex.test(this.registerBody.email)) {
+    this.toastr.error("E-mail est erroné");
+    return;
+  }
+  if (!this.postalCodeRegex.test(this.registerBody.postalCode)) {
+    this.toastr.error("Le code postal est invalide");
+    return;
+  }
+  if (!this.zipRegex.test(this.registerBody.zip)) {
+    this.toastr.error("Le code ZIP est invalide");
+    return;
+  }
+}
  submitShipment() {
   if (this.firstname.length === 0 ||
       this.lastname.length === 0 ||
@@ -70,7 +99,7 @@ export class ShipmentPageComponent {
       this.address.length === 0 ||
       this.city.length === 0 ||
       this.postalCode.length === 0 ||
-       
+
       this.zip.length === 0  ) {
     console.log("Please fill in all form fields");
   } else {
@@ -82,10 +111,11 @@ export class ShipmentPageComponent {
     this.dataService.bodyToSend.postalCode = this.postalCode;
     this.dataService.bodyToSend.email = this.email;;
     this.dataService.bodyToSend.zip = this.zip;
+    this.dataService.bodyToSend.shipmentType = this.shipmentSelectedCode
     this.dataService.bodyToSend.paiement = {
       code: "",
       discountValue: this.totalPrice,
-      shipmentPrice: this.ShippementCost,
+      shipmentPrice: this.shipmentCost,
       productsTotal: this.total
     };
 
@@ -97,13 +127,15 @@ export class ShipmentPageComponent {
 
 
   selectShipment(code:any){
-    this.shipmentSelectedCode=code;
-    console.log("selected shipment code :",this.shipmentSelectedCode);
+    let selectedShipment = this.shipmentTypes.find((shipmentType)=>shipmentType.code===code)
+    this.shipmentSelectedCode = code;
+    this.shipmentCost=selectedShipment?.price||0
+
   }
 
   backtoCart(){
 
-  this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+  this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
 
   this.router.navigate(['/cart'])
   }

@@ -25,7 +25,7 @@ export class PaimentOnlineComponent {
     this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response=>{
       console.log(response);
     });
-    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
 
 
 

@@ -13,7 +13,7 @@ import { ProductDto } from 'src/app/data-interfaces/ProductDto';
 export class DataService {
 
 
-  bodyToSend:{code:string,fname:string,lname:string,tel:string,address:string,city:string,postalCode:string,zip:string,email:string,status:string,shipmentType:number,products:ProductDto[],paiement:{}}={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+  bodyToSend:{code:string,fname:string,lname:string,tel:string,address:string,city:string,postalCode:string,zip:string,email:string,status:string,shipmentType:string,products:ProductDto[],paiement:{}}={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
 
   // {
   //   "code": "SHIP001",
