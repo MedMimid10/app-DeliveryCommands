@@ -24,6 +24,7 @@ export class ShipmentPageComponent {
   firstname:string="";
 
   shipmentTypes:ShipmentType[]=[];
+  shipmentSelectedCode:string="S-001";
 
   calculateTotalPrice(): void {
      this.total=this.totalPrice+this.ShippementCost; 
@@ -60,16 +61,19 @@ export class ShipmentPageComponent {
       this.dataService.bodyToSend.fname=this.firstname;
       console.log(this.dataService.bodyToSend);
       
-      this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response=>{
-        console.log(response);
-      });
+      
 
       this.router.navigate(['/paiement-online']);
     }
   }
 
+  selectShipment(code:any){
+    this.shipmentSelectedCode=code;
+    console.log("selected shipment code :",this.shipmentSelectedCode);
+  }
+
   backtoCart(){
-    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",status:"",shipmentType:0,products:[],paiement:{}};
+    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
     this.router.navigate(['/cart'])
   }
 }

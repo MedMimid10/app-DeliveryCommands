@@ -18,10 +18,13 @@ export class PaimentOnlineComponent {
     this.activeTab = tab;
   }
 
-  onSubmit() {
+  submitPayment() {
     // Handle the form submission
     // ...
-    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",status:"",shipmentType:0,products:[],paiement:{}};
+    this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+    this.dataService.createShipment(this.dataService.bodyToSend).subscribe(response=>{
+      console.log(response);
+    });
 
   }
   cancelPayment(){

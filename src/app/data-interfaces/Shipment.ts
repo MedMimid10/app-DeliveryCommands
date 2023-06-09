@@ -8,6 +8,7 @@ export interface Shipment{
     city:string,
     postalCode:string,
     zip:string,
+    email:string,
     orderDate:string,
     status:string,
     shipmentType: ShipmentType

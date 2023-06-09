@@ -24,7 +24,7 @@
           </div>
           <div class="tab-content">
             <div id="credit-card" class="tab-pane fade show" [ngClass]="{ active: activeTab === 'credit-card' }">
-              <form role="form" (submit)="onSubmit()">
+              <div role="form" >
                   <div class="form-group mb-3 mt-3">
                     <label for="username"><h6>Card Owner</h6></label>
                     <input type="text" name="username" placeholder="Card Owner Name" required class="form-control">
@@ -65,9 +65,9 @@
                   </div>
                   <div class="card-footer elemet-position">
                     <button type="submit" class=" btn btn-outline-secondary shadow-sm me-2 col-4" (click)="cancelPayment()">Annuler</button>
-                    <button type="submit" class=" btn btn-primary shadow-sm col-4" (click)="onSubmit()">Confirm Payment</button>
+                    <button type="submit" class=" btn btn-primary shadow-sm col-4" (click)="submitPayment()">Confirm Payment</button>
                   </div>
-              </form>
+                </div>
             </div>
 
 
