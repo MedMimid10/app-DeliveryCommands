@@ -13,14 +13,14 @@
                     <input type="text" id="typeText" [(ngModel)]="firstname" placeholder="Type here" class="form-control" />
                     </div>
                 </div>
-  
+
                 <div class="col-6">
                     <p class="mb-0">Last name</p>
                     <div class="form-outline">
                     <input type="text" id="typeText" [(ngModel)]="lastname"  placeholder="Type here" class="form-control" />
                     </div>
                 </div>
-  
+
                 <div class="col-6 mb-3">
                   <p class="mb-0">Phone</p>
                   <div class="form-outline">
@@ -30,7 +30,7 @@
                     Format de numéro de téléphone n'est pas valide
                   </div>
                 </div>
-  
+
                 <div class="col-6 mb-3">
                   <p class="mb-0">Email</p>
                   <div class="form-outline">
@@ -41,20 +41,20 @@
                   </div>
                 </div>
               </div>
-  
+
               <!-- <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                 <label class="form-check-label" for="flexCheckDefault">Keep me up to date on news</label>
               </div> -->
-  
+
               <hr class="my-4" />
-  
+
               <h5 class="card-title mb-3">Shipping info</h5>
-  
+
               <div class="row mb-3">
               <div *ngFor="let shipmentType of shipmentTypes" class="col-lg-4 mb-3">
                   <div class="form-check h-100 border rounded-3">
-  
+
                   <div class="p-3">
                       <!-- [checked]="shipmentType.name === 'express delivery'" -->
                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadio{{shipmentType.code}}" (change)="selectShipment(shipmentType.code)" [checked]="shipmentType.name === 'express delivery'" />
@@ -66,7 +66,7 @@
                   </div>
               </div>
               </div>
-  
+
               <div class="row">
                 <div class="col-sm-8 mb-3">
                     <p class="mb-0">Address</p>
@@ -74,7 +74,7 @@
                     <input type="text" id="typeText" [(ngModel)]="address" placeholder="Type here" class="form-control" />
                     </div>
                 </div>
-  
+
                 <div class="col-sm-4 mb-3">
                     <p class="mb-0">City</p>
                     <select class="form-select" [(ngModel)]="city">
@@ -83,15 +83,15 @@
                     <option value="Rabat">Rabat</option>
                     </select>
                 </div>
-  
-                <div class="col-sm-4 mb-3">
+
+                <!-- <div class="col-sm-4 mb-3">
                     <p class="mb-0">House</p>
                     <div class="form-outline">
                     <input type="text" id="typeText" placeholder="Type here" class="form-control" />
                     </div>
-                </div>
-  
-                <div class="col-sm-4 col-6 mb-3">
+                </div> -->
+
+                <div class="col-sm-6 col-6 mb-3">
                   <p class="mb-0">Postal code</p>
                   <div class="form-outline">
                   <input type="text" id="typeText" [(ngModel)]="postalCode" class="form-control" pattern="^\d{5}$" required/>
@@ -100,8 +100,8 @@
                     Postal code est erroné
                   </div>
               </div>
-  
-              <div class="col-sm-4 col-6 mb-3">
+
+              <div class="col-sm-6 col-6 mb-3">
                   <p class="mb-0">Zip</p>
                   <div class="form-outline">
                   <input type="text" id="typeText" [(ngModel)]="zip" class="form-control" pattern="^\d{5}$" required/>
@@ -111,7 +111,7 @@
                   </div>
               </div>
               </div>
-  
+
               <div class="float-end">
                 <button class="btn btn-light border" (click)="backtoCart()">Cancel</button>
                 <button class="btn btn-primary shadow-0 border mx-2" (click)="submitShipment()">Continue</button>
@@ -127,7 +127,7 @@
                     <p class="mb-2">products price:</p>
                     <p class="mb-2">${{totalPrice}}</p>
                 </div>
-  
+
                 <div class="d-flex justify-content-between">
                     <p class="mb-2">Shipping cost:</p>
                     <p class="mb-2">${{shipmentCost}}</p>
@@ -137,7 +137,7 @@
                     <p class="mb-2">Total price:</p>
                     <p class="mb-2 fw-bold">${{total}}</p>
                 </div>
-  
+
                 <hr />
             </div>
         </div>

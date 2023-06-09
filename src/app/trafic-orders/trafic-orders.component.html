@@ -25,9 +25,9 @@
         <div class=" d-flex flex-column justify-content-center m-0 ">
             <div class="col-12">
             <ul id="progressbar" class="text-center">
-                <li class="step0" [ngClass]="{'active': shipment.status==='order processed' || 'order shipped' || 'order on the way' || 'order arrived'}"></li>
-                <li class="step0" [ngClass]="{'active': shipment.status==='order shipped' || 'order on the way' || 'order arrived'}"></li>
-                <li class="step0" [ngClass]="{'active': shipment.status==='order on the way' || 'order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order processed' || shipment.status==='order shipped' || shipment.status==='order on the way' || shipment.status==='order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order shipped' || shipment.status==='order on the way' || shipment.status==='order arrived'}"></li>
+                <li class="step0" [ngClass]="{'active': shipment.status==='order on the way' || shipment.status==='order arrived'}"></li>
                 <li class="step0" [ngClass]="{'active': shipment.status==='order arrived'}"></li>
             </ul>
             <div class="d-flex justify-content-around ">

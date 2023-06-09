@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../service/data-service/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-paiment-online',
@@ -17,7 +18,8 @@ export class PaimentOnlineComponent implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,10 @@ export class PaimentOnlineComponent implements OnInit {
         this.pendingPayment=false;
 
       });
+      this.snackBar.open('Payment confirmed', 'Close', {
+        duration: 2500, // Duration in milliseconds
+      });
+      this.router.navigate(['/']);
       this.dataService.bodyToSend={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
     } else {
       // Display validation errors
@@ -103,7 +109,7 @@ export class PaimentOnlineComponent implements OnInit {
     const mastercardPattern = /^5[1-5]/;
     const amexPattern = /^3[47]/;
     const discoverPattern = /^6(?:011|5)/;
-    
+
     if (cardNumber.match(visaPattern)) {
       return 'Visa';
     } else if (cardNumber.match(mastercardPattern)) {
