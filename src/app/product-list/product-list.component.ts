@@ -4,6 +4,7 @@ import { Product } from '../data-interfaces/Product';
 import { Category } from '../data-interfaces/Category';
 import { CartService } from '../service/cart-service/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ProductListComponent {
   selectedCategory: string = "Categories";
 
 
-  constructor(private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
+  constructor(private fb: FormBuilder,private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
   addToCart(product: Product) {
     // Check if the product is already in the cart
     if (!this.cartService.isProductInCart(product)) {
@@ -45,6 +46,7 @@ export class ProductListComponent {
       // console.log(categories)
       this.categories=categories;
     })
+
 
   }
   filterProducts(): void {
