@@ -70,7 +70,8 @@ export class ShipmentPageComponent {
       this.address.length === 0 ||
       this.city.length === 0 ||
       this.postalCode.length === 0 ||
-      this.zip.length === 0) {
+       
+      this.zip.length === 0  ) {
     console.log("Please fill in all form fields");
   } else {
     this.dataService.bodyToSend.fname = this.firstname;
@@ -79,7 +80,7 @@ export class ShipmentPageComponent {
     this.dataService.bodyToSend.address = this.address;
     this.dataService.bodyToSend.city = this.city;
     this.dataService.bodyToSend.postalCode = this.postalCode;
-    this.dataService.bodyToSend.status = this.status;
+    this.dataService.bodyToSend.email = this.email;;
     this.dataService.bodyToSend.zip = this.zip;
     this.dataService.bodyToSend.paiement = {
       code: "",
