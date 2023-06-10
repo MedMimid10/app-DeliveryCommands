@@ -10,13 +10,13 @@
         <div class="card-header card-modification">
           <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
             <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-              <li class=" nav-item">
-                <a data-toggle="pill" routerLink="paiement-online" class="nav-link" [ngClass]="{ active: activeTab === 'credit-card' }"(click)="onSelectTab('credit-card')">
+              <li class="nav-item">
+                <a data-toggle="pill" class="nav-link" [ngClass]="{ active: activeTab === 'credit-card' }" (click)="onSelectTab('credit-card')">
                   <i class="fas fa-credit-card mr-2"></i> Credit Card
                 </a>
               </li>
               <li class="nav-item">
-                <a data-toggle="pill" routerLink="paiement-online" class="nav-link" [ngClass]="{ active: activeTab === 'paypal' }" (click)="onSelectTab('paypal')">
+                <a data-toggle="pill" class="nav-link" [ngClass]="{ active: activeTab === 'paypal' }" (click)="onSelectTab('paypal')">
                   <i class="fab fa-paypal mr-2"></i> Paypal
                 </a>
               </li>
@@ -24,15 +24,19 @@
           </div>
           <div class="tab-content">
             <div id="credit-card" class="tab-pane fade show" [ngClass]="{ active: activeTab === 'credit-card' }">
-              <div role="form" >
+              <div role="form">
+                <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
                   <div class="form-group mb-3 mt-3">
                     <label for="username"><h6>Card Owner</h6></label>
-                    <input type="text" name="username" placeholder="Card Owner Name" required class="form-control">
+                    <input type="text" formControlName="username" placeholder="Card Owner Name" required class="form-control">
+                    <div *ngIf="paymentForm.get('username')?.invalid && paymentForm.get('username')?.touched" class="text-danger">
+                      Card Owner Name is required.
+                    </div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="cardNumber"><h6>Card number</h6></label>
                     <div class="input-group">
-                      <input type="text" name="cardNumber" placeholder="Valid card number" class="form-control" require >
+                      <input type="text" formControlName="cardNumber" placeholder="Valid card number" class="form-control" required>
                       <div class="input-group-append">
                         <span class="input-group-text card-type rounded-end">
                           <i class="fab fa-cc-visa mx-1"></i>
@@ -41,39 +45,56 @@
                         </span>
                       </div>
                     </div>
+                    <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" class="text-danger">
+                      Valid card number is required.
+                    </div>
                   </div>
-                  <div class="">
-                    <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-sm-6">
                       <div class="form-group mb-3">
                         <label>
-                          <span class="hidden-xs"><h6>Expiration Date</h6></span>
+                          <span class="hidden-xs"><h6>Expiration Month</h6></span>
                         </label>
-                        <div class="input-group ">
-                          <input type="number" placeholder="MM" name="expMonth" class="form-control" require >
-                          <input type="number" placeholder="YY" name="expYear" class="form-control" require >
+                        <input type="number" formControlName="expMonth" placeholder="MM" class="form-control" required>
+                        <div *ngIf="paymentForm.get('expMonth')?.invalid && paymentForm.get('expMonth')?.touched" class="text-danger">
+                          Expiration Month is required.
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                      <div class="form-group mb-3">
+                        <label>
+                          <span class="hidden-xs"><h6>Expiration Year</h6></span>
+                        </label>
+                        <input type="number" formControlName="expYear" placeholder="YY" class="form-control" required>
+                        <div *ngIf="paymentForm.get('expYear')?.invalid && paymentForm.get('expYear')?.touched" class="text-danger">
+                          Expiration Year is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
                       <div class="form-group mb-4">
                         <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
                           <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
                         </label>
-                        <input type="text" name="cvv" required class="form-control">
-                    </div>
+                        <input type="text" formControlName="cvv" required class="form-control">
+                        <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched" class="text-danger">
+                          CVV is required.
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="card-footer elemet-position">
-                    <button type="submit" class=" btn btn-outline-secondary shadow-sm me-2 col-4" (click)="cancelPayment()">Annuler</button>
-                    <button type="submit" class=" btn btn-primary shadow-sm col-4" (click)="submitPayment()">Confirm Payment</button>
+                    <button type="button" class="btn btn-outline-secondary shadow-sm me-2 col-4" (click)="cancelPayment()">Cancel</button>
+                    <button type="submit" class="btn btn-primary shadow-sm col-4" [disabled]="paymentForm.invalid || pendingPayment">Confirm Payment</button>
                   </div>
-                </div>
+                </form>
+              </div>
             </div>
-
-
             <div id="paypal" class="tab-pane fade pt-3" [ngClass]="{ 'show active': activeTab === 'paypal' }">
               <!-- PayPal content here -->
-
               <h6 class="pb-2 my-2">Select your PayPal account type</h6>
               <div class="form-group item-type mb-3">
                 <label class="radio-inline mx-2">
@@ -100,4 +121,3 @@
     </div>
   </div>
 </div>
-

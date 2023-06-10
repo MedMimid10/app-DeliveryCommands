@@ -10,14 +10,15 @@ import { Shipment } from '../data-interfaces/Shipment';
 export class TraficOrdersComponent {
   code:string="";
   shipment:Shipment={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",orderDate:"",status:"",shipmentType: {code:"",name:"",description:"",price:0}};
-  
+
   constructor(private dataService:DataService){}
-  
-  
+
+
   getShipment(){
     console.log(this.code)
     if(this.code.length !== 0){
       this.dataService.getShipment(this.code).subscribe(shipment=>{
+        console.log(shipment.status==='order on the way' || 'order arrived')
         if(shipment !== null){
           this.shipment=shipment;
           console.log(shipment)

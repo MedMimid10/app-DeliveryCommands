@@ -4,6 +4,7 @@ import { Product } from '../data-interfaces/Product';
 import { Category } from '../data-interfaces/Category';
 import { CartService } from '../service/cart-service/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -17,7 +18,6 @@ export class ProductListComponent {
   categories:Category[]=[];
   filteredProducts: Product[] = [];
   selectedCategory: string = "Categories";
-
 
   constructor(private dataService:DataService, private cartService : CartService,private snackBar: MatSnackBar){}
   addToCart(product: Product) {
@@ -46,6 +46,7 @@ export class ProductListComponent {
       this.categories=categories;
     })
 
+
   }
   filterProducts(): void {
 
@@ -65,7 +66,5 @@ export class ProductListComponent {
       );
     }
   }
-
-
 
 }

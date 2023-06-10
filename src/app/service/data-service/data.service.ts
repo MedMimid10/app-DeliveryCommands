@@ -12,7 +12,9 @@ import { ProductDto } from 'src/app/data-interfaces/ProductDto';
 })
 export class DataService {
 
-  bodyToSend:{code:string,fname:string,lname:string,tel:string,address:string,city:string,postalCode:string,zip:string,email:string,status:string,shipmentType:number,products:ProductDto[],paiement:{}}={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:0,products:[],paiement:{}};
+
+  bodyToSend:{code:string,fname:string,lname:string,tel:string,address:string,city:string,postalCode:string,zip:string,email:string,status:string,shipmentType:string,products:ProductDto[],paiement:{}}={code:"",fname:"",lname:"",tel:"",address:"",city:"",postalCode:"",zip:"",email:"",status:"",shipmentType:"",products:[],paiement:{}};
+
   // {
   //   "code": "SHIP001",
   //   "fname": "John",
@@ -48,7 +50,7 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
-  private hostUrl='http://localhost:8090';
+  private hostUrl='https://livraison.onrender.com';
   private productsUrl=`${this.hostUrl}/api/products`;
   private categoriesUrl=`${this.hostUrl}/api/categories`;
   private shipmentTypesUrl=`${this.hostUrl}/api/shipment-types`;
@@ -72,5 +74,9 @@ export class DataService {
   }
   createShipment(bodyToSend:any){
     return this.http.post(this.shipmentUrl+`/add`,bodyToSend,this.httpOptions);
+  }
+  getShipmentCostByCode(code: string): Observable<number> {
+    const url = `${this.hostUrl}/api/shipments/${code}`;
+    return this.http.get<number>(url);
   }
 }
